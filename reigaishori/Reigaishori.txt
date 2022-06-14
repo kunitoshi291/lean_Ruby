@@ -1,0 +1,6 @@
+begin
+  # 例外が起きそうな処理
+rescue
+　# StandardErrorとそのサブクラスのみ捕捉される
+end
+
