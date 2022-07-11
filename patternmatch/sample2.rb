@@ -16,19 +16,32 @@
 # end
 
 # パターンマッチを使ったやり方
-cars = [
-    {name: 'The Beatle', engine: '105ps'},
-    {name: 'Prius', engine: '98ps', motor: '72ps'},
-    {name: 'Tesla', motor: '30ps'}
-]
-cars.each do |car|
-    case car
-        in {name:, engine:, motor:}
-         puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}" 
-        in {name: , engine:}
-         puts "gasoline: #{name} / engine: #{engine}" 
-        in {name: , motor:}
-         puts "EV: #{name} / motor #{motor}" 
-    end
-end
+# cars = [
+#     {name: 'The Beatle', engine: '105ps'},
+#     {name: 'Prius', engine: '98ps', motor: '72ps'},
+#     {name: 'Tesla', motor: '30ps'}
+# ]
+# cars.each do |car|
+#     case car
+#         in {name:, engine:, motor:}
+#          puts "Hybrid: #{name} / engine: #{engine} / motor: #{motor}" 
+#         in {name: , engine:}
+#          puts "gasoline: #{name} / engine: #{engine}" 
+#         in {name: , motor:}
+#          puts "EV: #{name} / motor #{motor}" 
+#     end
+# end
 
+# elseの代わりに後述するvariableパターンを利用し、任意のオブジェクトにマッチするin節を用意する
+country = 'india'
+case country
+    in 'japan'
+    'こんにちは'
+    in 'us'
+    'Hello'
+    in 'italy'
+    'Ciao'
+    in obj
+    # variableパターンを用いて任意のオブジェクトをマッチさせる（実質的なelse節）
+    "Unknown: #{obj}"
+end
