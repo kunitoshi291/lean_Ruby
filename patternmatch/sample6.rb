@@ -27,4 +27,44 @@ case {name: 'Nancy', age: 30, gender: :female}
 end
 
 
+cars = [
+    {name: 'The Beatle', engine: '105ps'},
+    {name: 'Prius', engine: '98ps', motor: '72ps'},
+    {name: 'Tesla', motor: '306ps'}
+]
+
+cars.each do |car|
+    case car
+        in {name:, engine: }
+        # The BeatleもPriusもどちらもこのパターンにマッチする
+        p "Gasoline: #{name} / engine: #{engine}"
+        in {name:, motor:}
+        p "EV: #{name} / motor: #{motor}"
+        in {name:, engine:, motor:}
+        # Priusはガソリン車のパターンに部分一致するので、下の処理は絶対に実行されない
+        p "Hybrid: #{name}, engine: #{engine}, motor: #{motor}"
+    end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
