@@ -46,6 +46,63 @@ cars.each do |car|
     end
 end
 
+# ただし、in節に{}を書いた場合は例外に「空のハッシュに完全一致」することがマッチの条件になる
+case {a: 1}
+in {}
+# {a:1}は空のハッシュではないのでここにはマッチしない
+'empty'
+in {a:}
+"a = #{a}"
+end
+
+case {}
+in {}
+#　空のハッシュ同士で完全一致するのでここにマッチする
+'empty'
+in {a:}
+"a= #{a}"
+end
+
+# in節でkey => value形式を使うと構文エラーになる
+# この制約により、hashパターンで使えるハッシュのキーは必然的にシンボルのみになる
+case {name: 'Alice', age: 20}
+    in {:name => n  :age => a}
+    # 省略
+end
+
+# メソッドの引数の定義と同様に **を使って「任意のキーと値」を指定することもできる
+case {name: 'Alice', age: 30, gender: :famele}
+    in {name: 'Alice', **rest}
+    # :nameがキーで値がAliceならマッチ。それ以外のキーと値は任意でrestに代入
+    "rest=#{rest}"
+end
+
+
+# **を最初に使うと構文エラーになる
+case {name: 'Alice', age: 20, gender: :famele}
+    in {**rest, gender:}
+    # 省略
+end
+
+# 変数として使わない**だけでも構わないが、**をつけなかった時と違いがないので、実際に使うことはあまりない。
+case {name: 'Alice', age: 20, gender: :famele}
+    in {name: 'Alice', **}
+    # :nameがキーで値がAliceならマッチ。それ以外のキーと値は任意。（変数として扱わない）
+    # ただし、in{name: 'Alice'}と書いた時と違いがない
+    'MATCHED'
+end
+
+# **nilとした場合は、「他のキーと値がないこと」を指す
+case {name: 'Alice', age: 20, gender: :famele}
+    in {name:, **nil}
+    # :name以外のキーがないことがマッチの条件となるので、case節のハッシュはマッチしない
+end
+
+case {name: 'Alice'}
+    in {name:,  **nil}
+    # :name以外のキーがないので、case節のハッシュはマッチする
+    "name=#{name}"
+end
 
 
 
