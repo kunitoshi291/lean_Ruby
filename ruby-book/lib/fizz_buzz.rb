@@ -1,4 +1,7 @@
+require 'debug'
+
 def fizz_buzz(n)
+    binding.break
     if n % 15 == 0
         'Fizz Buzz'
     elsif n % 3 == 0
@@ -10,7 +13,7 @@ def fizz_buzz(n)
     end
 end
 
-require 'minitest/autorun'
+# require 'minitest/autorun'
 
 # class FizzBuzzTest < Minitest::Test
 #     def test_fizz_buzz
