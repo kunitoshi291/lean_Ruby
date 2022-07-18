@@ -1,0 +1,13 @@
+# TypeProf 0.21.1
+
+# Classes
+class Object
+  private
+  def fizz_buzz: (Integer n) -> String
+end
+
+class FizzBuzzTest
+  def test_fizz_buzz: -> untyped
+  # assert_equalメソッドの型情報を追加
+  def assert_equal: (untyped, untyped) -> void
+end
